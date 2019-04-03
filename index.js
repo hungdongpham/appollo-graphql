@@ -22,15 +22,7 @@ const typeDefs = gql`
   # This "Book" type can be used in other type declarations.
   type Book {
     title: String
-    author: Author
-  }
-
-  type Author {
-    books: [Book]
-  }
-
-  type Query {
-    author: Author
+    author: String
   }
 
   # The "Query" type is the root of all GraphQL queries.
