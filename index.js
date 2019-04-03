@@ -22,7 +22,15 @@ const typeDefs = gql`
   # This "Book" type can be used in other type declarations.
   type Book {
     title: String
-    author: String
+    author: Author
+  }
+
+  type Author {
+    books: [Book]
+  }
+
+  type Query {
+    author: Author
   }
 
   # The "Query" type is the root of all GraphQL queries.
@@ -47,6 +55,6 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
 });
